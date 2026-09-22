@@ -55,9 +55,13 @@ only one run occurred. **The last score in your list must match the agreement li
 `eval-run.txt` you committed** — that file is the record of your final run.]
 
 agreement: 15/20 scored items  (bar: 18/20: below the bar)
+
 agreement: 18/20 scored items  (bar: 18/20: PASS)
+
 agreement: 18/20 scored items  (bar: 18/20: PASS)
+
 agreement: 18/20 scored items  (bar: 18/20: PASS)
+
 agreement: 18/20 scored items  (bar: 18/20: PASS)
 
 **Issue analysis**
@@ -67,8 +71,11 @@ issues are not scored). State your rubric's decision, the gold label, and the
 reasoning that produced your rubric's result.]
 
 *issue-02*
+
 *Rubric accepted.*
+
 {"id": "issue-02", "source": "rupa/z#349", "category": "dead-repo", "calibration": false, "verdict": "reject", "note": "clean bounded bug, but no commits or releases in over a year and an unanswered tracker"}
+
 My rubric accepted this where the gold standard rejects it because my rubric did not 
 specially consider answered trackers and was lax in time-since-last-*.  It's part of 
 the tradeoffs I was trying to balance when attempted a 20/20 score.

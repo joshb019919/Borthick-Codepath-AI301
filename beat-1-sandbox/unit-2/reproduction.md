@@ -30,6 +30,8 @@ comments upstream are identified by this name.]
 issue page on its own. **Then paste the text of that comment underneath the link** — the
 pasted text is what this field is graded on, so copy across what you actually posted.]
 
+`https://github.com/codepath/pathreview-ai301-fa26-s3/issues/10`
+
 ```Markdown
 Greetings.  I'd like to offer my services for this as a first contribution.
 The results from rag/retriever/hybrid.py could easily be passed to 

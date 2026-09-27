@@ -118,9 +118,9 @@ scored). Name it by id, say what your rubric decided and what the gold label sai
 explain why your rubric read it that way.]
 
 ```Text
-Package: pkg-20
+Package: <span style="color:white;">pkg-20</span>
 Rubric: rejected
-Gold: rejected`
+Gold: rejected
 Reason:
 The repo requires an AI use statement, even if only stating that no AI was used, and the 
 claimant makes no such statement.

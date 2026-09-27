@@ -66,8 +66,8 @@ nor without fully reviewing everything it generates.
 **Then paste the text of that comment underneath the link** — the pasted text is what this
 field is graded on, so copy across what you actually posted.]
 
-As this is a feature request, not a bug, this comment contains no reproducibility statement or
-any logs or images.
+`As this is a feature request, not a bug, this comment contains no reproducibility statement or
+any logs or images.`
 
 ## Eval iterations
 

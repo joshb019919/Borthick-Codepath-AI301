@@ -80,35 +80,35 @@ fields.
 only one run occurred. **The last score in your list must match the agreement line in the
 `eval-run.txt` you committed** — that file is the record of your final run.]
 
-```Text
-9/27/26 11:50 AM
+```Markdown
+### 9/27/26 11:50 AM
 categories: clear-accept 2/8  disclosure 1/1  no-evidence 4/4  unfollowable-comms 3/3  wrong-target 4/4
 agreement: 14/20 scored items  (bar: 18/20: below the bar)
 
-9/27/26 11:56 AM (only pkgs 7 and 20)
+### 9/27/26 11:56 AM (only pkgs 7 and 20)
 categories: clear-accept 1/1  disclosure 0/1
 agreement: 1/2 scored items
 
-9/27/26 12:04 PM (only pkg 20)
+### 9/27/26 12:04 PM (only pkg 20)
 categories: disclosure 0/1
 agreement: 0/1 scored items
 
-9/27/26 12:10 PM (only pkg 20)
+### 9/27/26 12:10 PM (only pkg 20)
 categories: disclosure 1/1
 agreement: 1/1 scored items
 
-9/27/26 12:15 PM
+### 9/27/26 12:15 PM
 categories: clear-accept 2/8  disclosure 1/1  no-evidence 4/4  unfollowable-comms 3/3  wrong-target 4/4
 agreement: 14/20 scored items  (bar: 18/20: below the bar)
 
-9/27/26 12:18 PM (pkgs 01, 03, 05, 10, 11, 12)
+### 9/27/26 12:18 PM (pkgs 01, 03, 05, 10, 11, 12)
 categories: clear-accept 6/6
 agreement: 6/6 scored items
 
-9/27/26 12:20 PM
+### 9/27/26 12:20 PM
 categories: clear-accept 8/8  disclosure 1/1  no-evidence 4/4  unfollowable-comms 3/3  wrong-target 4/4
 agreement: 20/20 scored items  (bar: 18/20: PASS)
-run written to eval-run.txt
+#### run written to eval-run.txt
 ```
 
 **Package analysis**
@@ -117,11 +117,12 @@ run written to eval-run.txt
 scored). Name it by id, say what your rubric decided and what the gold label said, and
 explain why your rubric read it that way.]
 
-```Text
-Package: pkg-20
-Rubric: rejected
-Gold: rejected
-Reason:
+```Markdown
+### Package: pkg-20
+### Rubric: rejected
+### Gold: rejected
+### Reason:
+
 The repo requires an AI use statement, even if only stating that no AI was used, and the 
 claimant makes no such statement.
 ```

@@ -118,7 +118,7 @@ scored). Name it by id, say what your rubric decided and what the gold label sai
 explain why your rubric read it that way.]
 
 ```Text
-Package: <span style="color:white;">pkg-20</span>
+Package: pkg-20
 Rubric: rejected
 Gold: rejected
 Reason:

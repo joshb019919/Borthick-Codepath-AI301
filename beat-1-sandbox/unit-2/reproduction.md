@@ -117,16 +117,14 @@ run written to eval-run.txt
 scored). Name it by id, say what your rubric decided and what the gold label said, and
 explain why your rubric read it that way.]
 
-`Package: pkg-20`
-
-`Rubric: rejected`
-
-`Gold: rejected`
-
-`Reason:` 
-
+```Text
+Package: pkg-20
+Rubric: rejected
+Gold: rejected`
+Reason:
 The repo requires an AI use statement, even if only stating that no AI was used, and the 
 claimant makes no such statement.
+```
 
 **Check rationale**
 

@@ -71,32 +71,10 @@ field is graded on, so copy across what you actually posted.]
 `https://github.com/codepath/pathreview-ai301-fa26-s3/issues/10`
 
 ```Markdown
-Greetings.  I'd like to offer my services for this as a first contribution.
-The results from rag/retriever/hybrid.py could easily be passed to 
-Llama 3.1 (8B) in before passing to the generator.  Of course, other models
-are acceptable, also.  I would call the new file rag/retriever/llm_rerank.py.
-I do not think the LLM would need to be fine-tuned.  The base pretrained
-model would work fine.
+### Reproduction and Logs
 
-What is "small LLM" in terms of number of parameters or install size?
-
-### Environment
-
-TLDR 2.3
-Ubuntu 26.04.1
-Windows 11 26H1 build 28000.3086 (dual boot)
-Linux 7.0.0-34-generic
-Firefox 156.0.1 (64-bit)
-Ollama v0.34.4
-
-### AI Use Statement
-
-As a CodePath student in their AI301 course, I am using Claude Code to grade
-and automate certain aspects of my work, such as issue selection, comment
-readiness, and so forth.  I intend to use it to assist my work in learning
-any missing links in information retrieval, RAG, and LLMs, as well as to 
-help speed up my debugging.  I will not use it to "do everything for me," 
-nor without fully reviewing everything it generates.
+As this is not a bug, this comment contains no reproducibility statement or
+any logs or images.
 ```
 
 ## Eval iterations

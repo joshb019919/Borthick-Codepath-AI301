@@ -44,12 +44,8 @@ What is "small LLM" in terms of number of parameters or install size?
 
 ### Environment
 
-TLDR 2.3
-Ubuntu 26.04.1
-Windows 11 26H1 build 28000.3086 (dual boot)
-Linux 7.0.0-34-generic
-Firefox 156.0.1 (64-bit)
-Ollama v0.34.4
+**OS:** Ubuntu 26.04.1
+**Kernel:** Linux 7.0.0-34-generic
 
 ### AI Use Statement
 
@@ -72,6 +68,15 @@ field is graded on, so copy across what you actually posted.]
 
 ```Markdown
 ### Reproduction and Logs
+
+#### Environment
+**OS:** Ubuntu 26.04.1
+**Kernel:** Linux 7.0.0-34-generic
+**Relevant Versions:** None mentioned in issue or pathreview repo
+**Code State:** Currently unmodified
+**Steps:**
+1. Clone the `pathreview-ai301-fa26-s3` CodePath repo
+**Observed:** There is one file called `scripts/run_evals.py` which has the entrypoint into the retriever (`rag/retriever/hybrid.py`) in the rag directory.  It will take in the files retrieved by the retriever, re-rank them, and pass them to the generator in `rag/generator/review_generator.py`'s `ReviewGenerator`.
 
 As this is not a bug, this comment contains no reproducibility statement or
 any logs or images.

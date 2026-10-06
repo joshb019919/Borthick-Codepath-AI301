@@ -86,8 +86,8 @@ field is graded on, so copy across what you actually posted.]
 
 As this is not a bug, this comment contains no reproducibility statement or any logs.  Images follow.
 
-!{first half of reproduced review}[review.png]
-!{second half of reproduced review}[review2.png]
+!{first half of reproduced review}[running.png]
+!{second half of reproduced review}[running2.png]
 ```
 
 ## Eval iterations

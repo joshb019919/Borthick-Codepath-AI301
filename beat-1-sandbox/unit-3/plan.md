@@ -112,5 +112,7 @@ help with debugging. I review everything it produces before posting.
 ## Deviations
 
 `test_disabled_still_applies_top_k` and `test_client_error_returns_original_order`
-go a bit beyond the plan.  Otherwise, it's good to go.
+go a bit beyond the plan.  Otherwise, it's good to go.  I would imagine that the 
+"why" is because I built decent rubric checks, voice, evidence-guide, etc., and
+because Claude Code is getting pretty good.
 

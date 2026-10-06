@@ -86,8 +86,8 @@ field is graded on, so copy across what you actually posted.]
 
 As this is not a bug, this comment contains no reproducibility statement or any logs.  Images follow.
 
-![half of showing the CodePath review tool running](running.png)
-![other half of showing the CodePath review tool running](running2.png)
+<img width="1399" height="902" alt="running" src="https://github.com/user-attachments/assets/37b0d598-74b8-4413-b17b-336fc68c4982" />
+<img width="1399" height="902" alt="running2" src="https://github.com/user-attachments/assets/4357c9ea-c2f2-46d4-a921-bdd92003e61b" />
 ```
 
 ## Eval iterations

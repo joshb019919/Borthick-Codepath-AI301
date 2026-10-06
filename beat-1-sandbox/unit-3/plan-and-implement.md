@@ -175,10 +175,28 @@ explain why your rubric read it that way.]
 
 *pkg-01*
 
+Summary
+
 My rubric rejected it, so did the gold standard.
 The commenter gets it wrong and doesn't take into account that it runs fine in versions
 of 3.13.5+.  My rubric catches this under "Wrong Cause" because the plan did not 
 reproduce the cause in the issue.
+
+Actual Text (issue)
+
+"Actual: with exactly one trailing flag between the URL and the request
+items, Python 3.11/3.12 argparse stops consuming positionals and
+reports them unrecognized; the same items parse fine without the flag
+(step 2) and on 3.13 (step 3)."
+
+Actual Text (claim comment)
+
+The `REQUEST_ITEM` tokenizer in `httpie/cli/requestitems.py` is the
+problem. Its separator regex fails to recognize `header1:xyz` and
+`x=1` as valid items when an optional flag appears earlier in the
+argument list, so the items fall through as unrecognized arguments.
+The Python-version difference is a red herring; the tokenizer has
+always been too strict about colon items.
 
 **Check rationale**
 

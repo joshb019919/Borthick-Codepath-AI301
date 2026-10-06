@@ -1,79 +1,115 @@
-# Josh Borthick
-
-Claim for the LLM-based re-ranker before text generation.
-
-## Candidate claim comment
-
-Greetings. I'd like to offer my services for this as a first contribution.
-The results from rag/retriever/hybrid.py could easily be passed to
-Llama 3.1 (8B) in before passing to the generator. Of course, other models
-are acceptable, also
-
-I do not think the LLM would need to be fine-tuned. The base pretrained
-model would work fine.
-
-What is "small LLM" in terms of number of parameters or install size?
+# Plan: LLM Re-Ranker for Retrieved Chunks (Issue #10)
 
 ## Environment
 
-OS 1: Ubuntu 26.04.1
-OS 1 Kernel: Linux 7.0.0-34-generic
+OS: Ubuntu 26.04.1
+Linux 7.0.0-34-generic
+Ollama v0.35.1
+Llama 3.1 8B (`ollama pull llama3.1:8b`)
+Unmodified `main` repo state
 
-## AI Use Statement
+## Observed in the Repo
 
-As a CodePath student in thier AI301 course, I am using Claude Code to grade
-and automate certain aspects of my work, such as issue selection, comment
-readiness, and so forth. I intend to use it to assist my work in learning
-any missing links in information retrieval, RAG, and LLMs, as well as to
-help speed up my debugging. I will not use it to "do everything for me,"
-nor without fully reviewing everything it generates.
+`HybridRetriever.retrieve()` (`rag/retriever/hybrid.py:34`) takes
+`max_chunks: int = 10` and returns `results[:max_chunks]` (line 117).
+`ReviewGenerator.generate_full_review(profile_data, retrieved_chunks)`
+(`rag/generator/review_generator.py:87`) uses `chunks[:10]` for
+context (line 148) and `retrieved_chunks[:5]` for citations (line 170).
 
-## Reproduction and Logs
+`ReviewGenerator` talks to its LLM through `openai.OpenAI(api_key, base_url)`.
+Ollama serves an OpenAI-compatible endpoint, so the reranker uses the same
+client type.
 
-### Environment
-
-**OS**: Ubuntu 26.04.1
-**Kernel**: Linux 7.0.0-34-generic
-**Relevant Versions**: None mentioned in issue or pathreview repo
-**LLMs**: Ollama
-**Code State**: Currently unmodified
-**Steps**:
-
-1. Clone the pathreview-ai301-fa26-s3 CodePath repo
-
-**Observed**: There is one file called `scripts/run_evals.py` which has the entrypoint into the retriever (`rag/retriever/hybrid.py`) in the rag directory. It will take in the files retrieved by the retriever, re-rank them, and pass them to the generator in `rag/generator/review_generator.py`'s `ReviewGenerator`.
-
-As this is not a bug, this comment contains no reproducibility statement or any logs or images.
-
-## Diagnosis
-
-The feature will work by creating the retriever to retrieve documents.  These documents will be compared to a query by an LLM like Ollama 3.1 8B or GPT-OSS 20B.  A series of prompts will inject query and documents together to the model to output a re-ranked set of documents as best aligns with the query.  These will be injected into the review generator to generate text.
+I did not find a Python caller that connects retriever to generator.
+`docs/ARCHITECTURE.md` describes the connection, but I'm not sure how it's
+wired up.
 
 ## Scope
 
-This will create a new feature as per issue #10 to re-rank retrieved documents to align with a query using a small LLM.  
+One new file, `rag/retriever/reranker.py`, plus tests.
 
-### Files Changed
+Changes to `hybrid.py`, `review_generator.py`, the evaluator, fine-tuning, or 
+wiring the reranker into the running app will not be required.
 
-`rag/rerank/reranker.py` will sit between `HybridRetriever.retrieve()` in `rag/retriever/hybrid.py` (line 129) and `rag/generator/review_generator.py`'s `ReviewGenerator.generate_full_review()` (line 87).
+### Interface
 
-It must have a specific shape to fit into the generator: `list[dict]` of `{id, text, metadata(source_id, chunk_index, section), score, vector_score, keyword_score}`, ordered.  It must output only the first 10 chunks for context formatting and the first 5 for adding citations.
+```python
+class LLMReranker:
+    def __init__(self, client, model: str, enabled: bool = False): ...
+    def rerank(self, query: str, chunks: list[dict], top_k: int = 10) -> list[dict]: ...
+```
 
-The `score` values will be updated by the LLM for sorting.
+`enabled=False` (default): `rerank()` returns `chunks[:top_k]` unchanged, so
+the existing behavior is untouched and the feature stays optional.
 
-I don't believe I'll need to change anything else to use the RAG files already created.
+`enabled=True`: the LLM scores each chunk's relevance to the query as an
+integer from 0 to 10. The output is sorted by that score (highest first,
+ties keep the retriever's original order) and cut to `top_k`.
+
+To rerank more than the default 10, the caller has to retrieve more first,
+e.g. `retrieve(..., max_chunks=30)`, then `rerank(..., top_k=10)`.
+
+Each returned chunk keeps the retriever's shape: `{id, text, metadata, score,` 
+`vector_score, keyword_score}`.
+
+Only `score` is replaced by the LLM score. `vector_score` and
+`keyword_score` are left as they were.
+
+The default `top_k=10` matches the generator's `[:10]` context slice.
+
+### Prompt and parsing
+
+One call to `client.chat.completions.create` with a system prompt that
+describes the task and a user prompt listing the query and the numbered
+chunks. The model is asked to return only a JSON list of integers, one per
+chunk, in order.
+
+If the reply is not valid JSON, has the wrong length, or has a value outside
+0 to 10, the reranker logs a warning and returns `chunks[:top_k]` in the
+original order. A bad LLM reply must never drop or reorder chunks by accident.
+Prompt text lives as a constant at the top of `reranker.py`.
 
 ## Tests
 
-A new unit test (`unittest` or `pytest`) in `tests/unit/` called `test_reranking.py` would call the pipeline directly since they're not wired, anywhere.  It would instantiate and run the generator, then use the `eval_suite.py` in `rag/evaluator/` to check faithfulness and relevance score of returned documents.
+New file `tests/unit/test_reranking.py`. The LLM client is mocked, so no
+Ollama is needed and the `test-unit` CI job stays green.
 
-*This project "runs" via Docker, but does not appear connected via Python files, so I am not sure what else to expect in terms of following the pipeline.  ARCHITECTURE.md insists they're connected, but I don't see it.*
+Mock returns scores `[2, 9, 5]` for three chunks: output order is
+chunk 2, chunk 3, chunk 1.
 
-### Unit 2 Steps Rerun
+`top_k=2` returns exactly 2 chunks, the two highest-scoring.
 
-This is a feature, so just as before, there is no "bug" repro report.  An image showing that I have the tool working and open follows.  These are my personal GitHub and resume.
+`enabled=False` returns the input order unchanged and the mock is never
+called.
 
-![half of showing the CodePath review tool running](running.png)
-![other half of showing the CodePath review tool running](running2.png)
+Each returned dict has the keys `id, text, metadata, score, vector_score,
+keyword_score`, and `vector_score`/`keyword_score` are unchanged.
+
+Mock returns non-JSON, a list of the wrong length, or an out-of-range
+value: original order is returned.
+
+Tied scores keep the retriever's order.
+
+To Run: `pytest tests/unit/test_reranking.py`, then `make check && make test-unit`
+to confirm lint, types and the full unit suite.
+
+Manual check against a real model (not part of CI): with Ollama running,
+retrieve with `max_chunks=30`, call `rerank(..., top_k=10)` with
+`enabled=True`, and print the chunk ids before and after. The order should
+differ from the retriever's order.
+
+I considered using `rag/evaluator/` (`RelevanceScorer`, `FaithfulnessChecker`)
+for the pass/fail check and decided against it. Both return one float over the
+whole chunk set from keyword overlap and have no thresholds, so they can't show
+whether a reranker changed the order. I may report their before and after
+numbers as extra information only.
+
+## AI Use Statement
+
+I'm using Claude Code to read the repo, check this plan against a rubric, and
+help with debugging. I review everything it produces before posting.
 
 ## Deviations
+
+`test_disabled_still_applies_top_k` and `test_client_error_returns_original_order`
+go a bit beyond the plan.  Otherwise, it's good to go.

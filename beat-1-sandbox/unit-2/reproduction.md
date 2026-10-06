@@ -76,10 +76,18 @@ field is graded on, so copy across what you actually posted.]
 **Code State:** Currently unmodified
 **Steps:**
 1. Clone the `pathreview-ai301-fa26-s3` CodePath repo
-**Observed:** There is one file called `scripts/run_evals.py` which has the entrypoint into the retriever (`rag/retriever/hybrid.py`) in the rag directory.  It will take in the files retrieved by the retriever, re-rank them, and pass them to the generator in `rag/generator/review_generator.py`'s `ReviewGenerator`.
+2. Ensure that Docker and PostgreSQL are installed and running on your machine.
+3. Change into your directories on the terminal or command prompt.
+4. Do `make setup` to create the proper database entries.
+5. Log into a profile at `http://localhost:5173` with one of the profiles provided in `docs/SETUP.md`.
+6. Enter a GitHub username and a resume.
 
-As this is not a bug, this comment contains no reproducibility statement or
-any logs or images.
+**Observed:** The RAG pipeline seems unconnected to anything, so it needs to be created/called in the unit tests.
+
+As this is not a bug, this comment contains no reproducibility statement or any logs.  Images follow.
+
+!{first half of reproduced review}[review.png]
+!{second half of reproduced review}[review2.png]
 ```
 
 ## Eval iterations

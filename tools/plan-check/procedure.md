@@ -38,6 +38,9 @@ first, then the claim comment, then the repro report. The deciding
 evidence is usually whether the report's artifacts show the
 behavior the issue describes.
 
+All text associated with the student's comment on the issue will be 
+in plan.md and plan of action will be in comment.md.
+
 ## Evidence gathering
 
 <!-- For each evidence family your rubric's checks name, the concrete

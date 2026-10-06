@@ -86,8 +86,8 @@ field is graded on, so copy across what you actually posted.]
 
 As this is not a bug, this comment contains no reproducibility statement or any logs.  Images follow.
 
-!{first half of reproduced review}[running.png]
-!{second half of reproduced review}[running2.png]
+![half of showing the CodePath review tool running](running.png)
+![other half of showing the CodePath review tool running](running2.png)
 ```
 
 ## Eval iterations

@@ -90,6 +90,24 @@ As this is not a bug, this comment contains no reproducibility statement or any 
 ![half of showing the CodePath review tool running](running.png)
 ![other half of showing the CodePath review tool running](running2.png)
 
+```Markdown
+#### Expected Behavior Before
+
+The keyword and vector approaches will retrieve chunks in proportion of 0.3 keyword, 0.7 vector.  The generator takes these ordered chunks and decides how many to use to generate text from.
+
+#### Expected Behavior After
+
+The keyword and vector rankers still retrieve chunks in that proportion, and the generator still takes in chunks to generate text.  However, there will be a small LLM between them that re-ranks based on the chunks' alignment with a query.  It will change only the score value of the output of the naive retrievers, altering it from a float to an integer, and pass those chunks on to the generator.
+
+The class will have a field which can be set that deactivates the LLM so that output from the rankers passes directly as input to the generators.
+
+The generator and keyword and vector rankers will not be affected.
+
+#### Expected Testing Behavior
+
+All features of the LLM will be unit tested to ensure both that they work and that they properly accept the output of the rankers and properly return input to the generators.  It will also be tested that the re-ranker deactivates and allows data to pass through, unchanged.
+```
+
 ## Eval iterations
 
 Answer all four sections. Quote source text directly; paraphrase does not satisfy these

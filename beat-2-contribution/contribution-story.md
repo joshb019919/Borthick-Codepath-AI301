@@ -55,10 +55,9 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: [one line on the tool work]**
+**Unit 5: Wrote the `gh` query and ranking filters in search-strategy.md**
 
-[2-4 sentences: what you built (the scout, your strategy), what broke
-or fell short, what changed because of it.]
+I chose the query `gh search issues --language python --state open --no-assignee --label "good first issue" --created ">2026-11-01" --json title,repository,labels,createdAt,updatedAt,commentsCount,url --limit 100` because it uses the language I want, is likely unpicked and good for beginners' first issue, isn't assigned, and recent enough to hopefully be actively maintained.  I wrote other queries for Java, Go, and C++ too, but they're commented out in case I wanted to try another language.  My filters preferred 0 comments, work involving AI models, and only issues in English.  Nothing broke really, all the issues the scout returned were interesting, passed the rubric and filters, and are issues I could work on with Claude.
 
 **Unit 6: [one line on the tool work]**
 

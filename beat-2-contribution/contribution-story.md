@@ -8,10 +8,9 @@ format criteria grade exactly that. Your course repo link is the whole submissio
 files and no evidence uploads are part of Assignment 5.
 
 **Contribution Number:** [1]
-**Student:** [Student name]
-**GitHub Username:** [your GitHub username, exactly as it appears on your profile - no @, no
-profile URL. Your comments upstream are identified by this name.]
-**Issue:** [GitHub issue link]
+**Student:** Josh Borthick
+**GitHub Username:** joshb019919
+**Issue:** https://github.com/ESCOMP/CTSM/issues/2650
 **Pull Request:** [GitHub PR link, once opened]
 
 One repository, built across units 5 to 8, telling the whole story of your real
@@ -55,9 +54,17 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: Wrote the `gh` query and ranking filters in search-strategy.md**
+**Unit 5: Wrote the `gh` query and ranking filters in search-strategy.md then selected an issue**
 
-I chose the query `gh search issues --language python --state open --no-assignee --label "good first issue" --created ">2026-11-01" --json title,repository,labels,createdAt,updatedAt,commentsCount,url --limit 100` because it uses the language I want, is likely unpicked and good for beginners' first issue, isn't assigned, and recent enough to hopefully be actively maintained.  I wrote other queries for Java, Go, and C++ too, but they're commented out in case I wanted to try another language.  My filters preferred 0 comments, work involving AI models, and only issues in English.  Nothing broke really, all the issues the scout returned were interesting, passed the rubric and filters, and are issues I could work on with Claude.
+
+For the activity, I chose the query `gh search issues --language python --state open --no-assignee --label "good first issue" --created ">2026-11-01" --json title,repository,labels,createdAt,updatedAt,commentsCount,url --limit 100` because it uses the language I want, is likely unpicked and good for beginners' first issue, isn't assigned, and recent enough to hopefully be actively maintained.  I wrote other queries for Java, Go, and C++ too, but they're commented out in case I wanted to try another language.  My filters preferred 0 comments, work involving AI models, and only issues in English.  Nothing broke really, all the issues the scout returned were interesting, passed the rubric and filters, and are issues I could work on with Claude.
+
+**Toolkit**
+
+- Tool: issue-scout, via Claude Code, to make sure the issue I pick passes all rules.
+- What it produced: fenced JSON, mostly rejections, and a couple accepts, one of which I picked.
+- Difficulties: There were a bunch of rejected issues, probably because I'm so late at getting to this.
+- What changed: I just keep trying repos from the curated issues selected by CodePath.
 
 **Unit 6: [one line on the tool work]**
 
@@ -65,15 +72,43 @@ I chose the query `gh search issues --language python --state open --no-assignee
 fell short, and what changed because of it. "Nothing broke" counts when
 it is true - say how you know.]
 
+
+
+**Toolkit**
+
+- Tool: [which tool did this phase's work, and how you used it]
+- What it produced: [described in a sentence or a short excerpt]
+- Difficulties: [what fought you or fell short, or "none met"]
+- What changed: [the patch, revision, or workaround, what you would
+  update, or "nothing"]
+
 **Unit 7: [one line on the tool work]**
 
 [2-4 sentences: the ship-gate and your gate manifest. What it produced
 on your real branch, what fought you, what changed because of it.]
 
+
+
+**Toolkit**
+
+- Tool: issue-scout, via Claude Code, to make sure the issue I pick passes all rules.
+- What it produced: fenced JSON, mostly rejections, and a couple accepts, one of which I picked.
+- Difficulties: There were a bunch of rejected issues, probably because I'm so late at getting to this.
+- What changed: I just keep trying repos from the curated issues selected by CodePath.
+
 **Unit 8: [one line on the tool work]**
 
 [2-4 sentences: the PR-monitor and your playbook. What it read, what it
 drafted, what you did with the draft.]
+
+
+
+**Toolkit**
+
+- Tool: issue-scout, via Claude Code, to make sure the issue I pick passes all rules.
+- What it produced: fenced JSON, mostly rejections, and a couple accepts, one of which I picked.
+- Difficulties: There were a bunch of rejected issues, probably because I'm so late at getting to this.
+- What changed: I just keep trying repos from the curated issues selected by CodePath.
 
 ---
 

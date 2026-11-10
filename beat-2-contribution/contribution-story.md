@@ -54,61 +54,24 @@ happened; these entries are the toolkit's own timeline.
 All four entries are graded. Keep every heading below, and fill each
 one in the week it belongs to.
 
-**Unit 5: Wrote the `gh` query and ranking filters in search-strategy.md then selected an issue**
+**Unit 5: Wrote the `gh` query and ranking filters in search-strategy.md then selected an issue with issue-scout**
 
-
+**11/3/2026**
 For the activity, I chose the query `gh search issues --language python --state open --no-assignee --label "good first issue" --created ">2026-11-01" --json title,repository,labels,createdAt,updatedAt,commentsCount,url --limit 100` because it uses the language I want, is likely unpicked and good for beginners' first issue, isn't assigned, and recent enough to hopefully be actively maintained.  I wrote other queries for Java, Go, and C++ too, but they're commented out in case I wanted to try another language.  My filters preferred 0 comments, work involving AI models, and only issues in English.  Nothing broke really, all the issues the scout returned were interesting, passed the rubric and filters, and are issues I could work on with Claude.
 
-**Toolkit**
+**Unit 6: Drafted a claim comment and checked it with repro-check.**
 
-- Tool: issue-scout, via Claude Code, to make sure the issue I pick passes all rules.
-- What it produced: fenced JSON, mostly rejections, and a couple accepts, one of which I picked.
-- Difficulties: There were a bunch of rejected issues, probably because I'm so late at getting to this.
-- What changed: I just keep trying repos from the curated issues selected by CodePath.
-
-**Unit 6: [one line on the tool work]**
-
-[2-4 sentences: the voice-guard, the repo-memory file. What broke or
-fell short, and what changed because of it. "Nothing broke" counts when
-it is true - say how you know.]
-
-
-
-**Toolkit**
-
-- Tool: [which tool did this phase's work, and how you used it]
-- What it produced: [described in a sentence or a short excerpt]
-- Difficulties: [what fought you or fell short, or "none met"]
-- What changed: [the patch, revision, or workaround, what you would
-  update, or "nothing"]
+I added the required check to the voice-guard, did the symlinking.  I did the repo-memory file.  Otherwise, I copied everything that was already there into the new files.  The only things that broke anything were my claim comment formats, which I altered till it passed.
 
 **Unit 7: [one line on the tool work]**
 
 [2-4 sentences: the ship-gate and your gate manifest. What it produced
 on your real branch, what fought you, what changed because of it.]
 
-
-
-**Toolkit**
-
-- Tool: issue-scout, via Claude Code, to make sure the issue I pick passes all rules.
-- What it produced: fenced JSON, mostly rejections, and a couple accepts, one of which I picked.
-- Difficulties: There were a bunch of rejected issues, probably because I'm so late at getting to this.
-- What changed: I just keep trying repos from the curated issues selected by CodePath.
-
 **Unit 8: [one line on the tool work]**
 
 [2-4 sentences: the PR-monitor and your playbook. What it read, what it
 drafted, what you did with the draft.]
-
-
-
-**Toolkit**
-
-- Tool: issue-scout, via Claude Code, to make sure the issue I pick passes all rules.
-- What it produced: fenced JSON, mostly rejections, and a couple accepts, one of which I picked.
-- Difficulties: There were a bunch of rejected issues, probably because I'm so late at getting to this.
-- What changed: I just keep trying repos from the curated issues selected by CodePath.
 
 ---
 
@@ -125,13 +88,41 @@ you it held up. **Record the link to your claim comment in this section too.**
 Not claimed yet? Write `claim pending` and today's date where the link goes,
 and add the link the moment your claim lands.]
 
+I first tried a wild repo that I'd found from a regular filtered search, but was told it wasn't a big enough project and didn't have enough hands in it to count.  I then went through about 50 curated issues with filters "python" and "good first issue" to find one that passed my issue-scout (most were already claimed, had PRs or assignees, or weren't maintained).  I settled on one that seemed easy enough (classification of **straightforward**) and didn't have any claims.  
+
+I was going to find a complex one to do, but realized that I was running out of time in this course.  This fits my profile because the changes to be made are in Python, which I prefer to work in, and it's a large Earth sciences tool.  My future career will likely be in that field, given where I'll be living.  I hope to learn how to run this tool and some of the inner workings of its codebase, perhaps even ingratiate myself to the maintainers and owners and be allowed to use it on their supercomputer.
+
+The verdict was "accept".  The scout fell short by saying this was a straightforward fix, but that's mostly my own judgement.  It is a huge codebase.  The fix itself is rather simple, but it could be difficult to understand the larger context of what it does.
+
+**Claim Link**
+`https://github.com/ESCOMP/CTSM/issues/2650#issuecomment-6780855685`
+
 **Toolkit**
 
 - Tool: issue-scout (your scout: your search strategy, your rubric),
   and how you used it
-- What it produced: [the scan and its verdict on this issue, described]
-- Difficulties: [where it fell short, or "none met" if none did]
-- What changed: [what you patched or would update, or "nothing"]
+- What it produced: 
+
+```JSON
+{
+    "item": "https://github.com/ESCOMP/CTSM/issues/2650",
+    "checks": [
+      {"name": "Recent default-branch commits", "grade": "pass", "evidence": "last commit 2026-11-03"},
+      {"name": "Release recency", "grade": "pass", "evidence": "latest release 2025-12-12"},
+      {"name": "Archived flag", "grade": "pass", "evidence": "isArchived=false"},
+      {"name": "Assignee", "grade": "pass", "evidence": "assignees: []"},
+      {"name": "Linked PRs", "grade": "pass", "evidence": "no PR references in the timeline"},
+      {"name": "Claim comments", "grade": "pass", "evidence": "no claims; newest comment wwieder 2026-10-01 marks it 'eventually'"},
+      {"name": "Contribution policy", "grade": "pass", "evidence": "CONTRIBUTING.md has no AI restriction"},
+      {"name": "Dedicated AI policy files", "grade": "pass", "evidence": "no AI_POLICY.md or AGENTS.md"},
+      {"name": "Scope Feasible", "grade": "pass", "evidence": "samsrabin 2024-08-28: only tools/contrib/ and commented lilac lines affected; 'should be an easy fix'"}
+    ],
+    "verdict": "accept"
+  }
+```
+
+- Difficulties:  Difficulty was in finding an unclaimed issue on a repo that was actively maintained.
+- What changed: I just keep trying repos from the curated issues selected by CodePath, but changed nothing in the rubrics.
 
 ---
 

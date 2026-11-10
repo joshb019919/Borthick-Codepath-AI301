@@ -130,19 +130,19 @@ The verdict was "accept".  The scout fell short by saying this was a straightfor
 
 **Problem Description**
 
-[In your own words, what is broken or missing?]
+The path to a username is hard coded to an older path.
 
 **Expected Behavior**
 
-[What should happen?]
+It needs updated to the current path to read and write the proper places.
 
 **Current Behavior**
 
-[What actually happens?]
+It tries to read and write to scientific files that no longer exist.
 
 **Affected Components**
 
-[Which parts of the codebase are involved?]
+Derecho reading and writing of data.
 
 **Toolkit**
 

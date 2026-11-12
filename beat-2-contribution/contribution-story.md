@@ -148,20 +148,34 @@ The `ShapeLabelMapFilter` class in `ITK/Modules/Filtering/LabelMap/include/itkSh
 
 **Environment Setup**
 
-[What a stranger would need to stand this up: your operating system,
-the relevant versions (language, runtime, package manager, the project
-itself), and how you set the project up. Then the challenges you faced
-and how you solved them, or that none came up.]
+- **OS:** Ubuntu 26.04.1 LTS.
+- **Kernel:** Linux 7.0.0-43-generic.
+- **Architecture:** x86_64.
+- **ITK:** `v6.0b02-6872-g2e3a1eb760` (development).
+- **Toolchain:**
+  - **Package Manager:** Pixi (conda-forge).
+  - **Langauges:**
+    - Python `>=3.13.5,<3.14`.
+    - C++ `>17`.
+  - **Dependencies:**
+    - CMake `>=4.0.3,<5`.
+    - Ninja `>=1.13.0,<2`.
+    - ccache `>=4.13.6,<5`.
+    - pre-commit `>=4.1.0,<5`.
+- **Setup:**
+  - `pixi install`.
+  - `pixi run --as-is build`.
+- **Challenges:** I have not built or run ITK's tests because Pixi is not on my machine (I don't have Conda).  Nothing in this change needs a build.
 
 **Steps to Reproduce**
 
-1. [Step 1]
-2. [Step 2]
-3. [Observed result]
+1. Fork InsightSoftwareConsortium/ITK.
+2. Clone to local machine.
+3. Observe that `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelMapFilter.h` and `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelobject.h` class headers have no citations for the paper, "Efficient N-Dimensional surface estimation using Crofton formula and run-length encoding".
 
 **Reproduction Evidence**
 
-- **Commit showing reproduction:** [link to commit in your fork]
+- **Commit showing reproduction:** https://github.com/joshb019919/ITK/commit/2e3a1eb7600d153cb71e3b6b7e69163d3ab108b5.
 - **Screenshots/logs:** [if applicable]
 - **My findings:** [what you discovered during reproduction; an
   honest, evidenced cannot-reproduce that led you to re-pick or ask

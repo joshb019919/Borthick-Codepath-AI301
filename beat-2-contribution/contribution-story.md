@@ -176,7 +176,7 @@ The `ShapeLabelMapFilter` class in `ITK/Modules/Filtering/LabelMap/include/itkSh
 
 1. Fork InsightSoftwareConsortium/ITK.
 2. Clone to local machine.
-3. Observe that `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelMapFilter.h` and `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelobject.h` class headers have no citations for the paper, "Efficient N-Dimensional surface estimation using Crofton formula and run-length encoding".
+3. Observe that `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelMapFilter.h` and `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelObject.h` class headers have no citations for the paper, "Efficient N-Dimensional surface estimation using Crofton formula and run-length encoding".
 
 **Reproduction Evidence**
 
@@ -197,28 +197,26 @@ The `ShapeLabelMapFilter` class in `ITK/Modules/Filtering/LabelMap/include/itkSh
 
 **Analysis**
 
-[Your analysis of the root cause: what is causing the issue, traced
-to the files and functions involved.]
+The missing documentation comes from how the classes are split, which a maintainer (blowekamp) described on the issue: the data lives in the object, the filter computes it, and other filters reuse the filter, so it was never clear where to document it. Neither class's Doxygen comment cites the paper.
 
 **Proposed Solution**
 
-Add the citations to the docstrings of `ShapeLabelObject` and `ShapeLabelMapFilter` class headers.
+Add the citations to the docstrings of `ShapeLabelObject` and `ShapeLabelMapFilter` class headers.  Link to https://insight-journal.org/browse/publication/852/ for authors Gaetan Lehmann and David Legland.  No code changed (no functionality, only docstrings).  Nothing is removed, either, only added.
 
 **Implementation Plan**
 
-1. [Modify file X to do Y]
-2. [Add or change Z]
-3. [Update tests]
+1. `itkShapeLabelMapFilter.h`: add the paper paragraph above `\author`. Done in commit `2e3a1eb760` (`DOC: Cite perimeter paper in ShapeLabelMapFilter documentation`, `Addresses #470.`).
+2. `itkShapeLabelObject.h`: add the same paragraph to the class comment. Written but uncommitted in the working tree.
+3. Run `pixi exec pre-commit run --files` on both headers and commit step 2 with a `DOC:` subject of 78 characters or fewer.
+4. Open a draft PR with the AI disclosure only in a `<details>` block, per `Documentation/AI/attribution.md`.
 
-[Record deviations here as they happen: what changed mid-build and
-why. A recorded deviation is honest work; silent drift is not.]
+**Derivation:** I originally mentioned changing both files, but only changed one.  I'll mention in PR `--force-with-lease` about it so maintainers can drop the update in `itkShapeLabelObject.h` if preferred.
 
 **Toolkit**
-
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- **Tool:** Claude Code, reading the three headers and the `.hxx`, and drafting the comment text; I reviewed and edited it.
+- **What it produced:** the root-cause trace above and the two comment paragraphs.
+- **Difficulties:** the draft of the second paragraph left trailing whitespace, caught in the diff review.
+- **What changed:** the whitespace is to be fixed before the commit; nothing else.
 
 ---
 

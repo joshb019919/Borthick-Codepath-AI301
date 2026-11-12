@@ -8,9 +8,13 @@ format criteria grade exactly that. Your course repo link is the whole submissio
 files and no evidence uploads are part of Assignment 5.
 
 **Contribution Number:** [1]
+
 **Student:** Josh Borthick
+
 **GitHub Username:** joshb019919
+
 **Issue:** https://github.com/InsightSoftwareConsortium/ITK/issues/470
+
 **Pull Request:** https://github.com/InsightSoftwareConsortium/ITK/pull/7159
 
 One repository, built across units 5 to 8, telling the whole story of your real
@@ -57,6 +61,7 @@ one in the week it belongs to.
 **Unit 5: Wrote the `gh` query and ranking filters in search-strategy.md then selected an issue with issue-scout**
 
 **11/3/2026**
+
 For the activity, I chose the query `gh search issues --language python --state open --no-assignee --label "good first issue" --created ">2026-11-01" --json title,repository,labels,createdAt,updatedAt,commentsCount,url --limit 100` because it uses the language I want, is likely unpicked and good for beginners' first issue, isn't assigned, and recent enough to hopefully be actively maintained.  I wrote other queries for Java, Go, and C++ too, but they're commented out in case I wanted to try another language.  My filters preferred 0 comments, work involving AI models, and only issues in English.  Nothing broke really, all the issues the scout returned were interesting, passed the rubric and filters, and are issues I could work on with Claude.
 
 **Unit 6: Drafted a claim comment and checked it with repro-check.**
@@ -176,17 +181,15 @@ The `ShapeLabelMapFilter` class in `ITK/Modules/Filtering/LabelMap/include/itkSh
 **Reproduction Evidence**
 
 - **Commit showing reproduction:** https://github.com/joshb019919/ITK/commit/2e3a1eb7600d153cb71e3b6b7e69163d3ab108b5.
-- **Screenshots/logs:** [if applicable]
-- **My findings:** [what you discovered during reproduction; an
-  honest, evidenced cannot-reproduce that led you to re-pick or ask
-  the maintainer belongs here and costs you nothing]
+- **Screenshots/logs:** ![Proof of docstring changes](proof_of_docstring_change.png)
+- **My findings:** The "reproduction" is a simple cloning of the repo that let me check the appropriate files' lack of that citation in their class docstrings.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- **Tool:** `gh api` to read the issue and its comments, and `grep` over the LabelMap headers; Claude Code ran both and summarized.
+- **What it produced:** the issue text and four comments, and the grep showing no paper citation in the headers.
+- **Difficulties:** `gh issue view` failed (Projects classic deprecation error).
+- **What changed:** switched to `gh api`.
 
 ---
 
@@ -199,8 +202,7 @@ to the files and functions involved.]
 
 **Proposed Solution**
 
-[High-level description of your fix approach, and what you are
-deliberately NOT changing.]
+Add the citations to the docstrings of `ShapeLabelObject` and `ShapeLabelMapFilter` class headers.
 
 **Implementation Plan**
 

@@ -10,8 +10,8 @@ files and no evidence uploads are part of Assignment 5.
 **Contribution Number:** [1]
 **Student:** Josh Borthick
 **GitHub Username:** joshb019919
-**Issue:** https://github.com/ESCOMP/CTSM/issues/2650
-**Pull Request:** [GitHub PR link, once opened]
+**Issue:** https://github.com/InsightSoftwareConsortium/ITK/issues/470
+**Pull Request:** https://github.com/InsightSoftwareConsortium/ITK/pull/7159
 
 One repository, built across units 5 to 8, telling the whole story of your real
 contribution. Fill it as you work, not at the end — the sections below ask for evidence that
@@ -77,25 +77,14 @@ drafted, what you did with the draft.]
 
 ## Why I Chose This Issue
 
-[1-2 paragraphs in your own words: how you searched, what your scan
-surfaced, what your scout's verdict said, why this issue fits your
-profile, and what you hope to learn. If your scout's verdict on it
-was reject and you chose it anyway, say so here and say why; choosing
-against your own tool silently is what loses points. Close with an
-honest read of the tool itself: where the scout fell short on a real
-wild search and what you changed or would change, or what convinced
-you it held up. **Record the link to your claim comment in this section too.**
-Not claimed yet? Write `claim pending` and today's date where the link goes,
-and add the link the moment your claim lands.]
-
 I first tried a wild repo that I'd found from a regular filtered search, but was told it wasn't a big enough project and didn't have enough hands in it to count.  I then went through about 50 curated issues with filters "python" and "good first issue" to find one that passed my issue-scout (most were already claimed, had PRs or assignees, or weren't maintained).  I settled on one that seemed easy enough (classification of **straightforward**) and didn't have any claims.  
 
-I was going to find a complex one to do, but realized that I was running out of time in this course.  This fits my profile because the changes to be made are in Python, which I prefer to work in, and it's a large Earth sciences tool.  My future career will likely be in that field, given where I'll be living.  I hope to learn how to run this tool and some of the inner workings of its codebase, perhaps even ingratiate myself to the maintainers and owners and be allowed to use it on their supercomputer.
+I was going to find a complex one to do, but realized that I was running out of time in this course.  This does fit my profile so well because it isn't challenging or involving Python, Rust, or the other things I wanted to work on.  This is a selection of convenience because I'm running out of time.  Actually though, I hope to learn how to run this ITK tool and some of the inner workings of its codebase, perhaps even ingratiate myself to the maintainers and owners and be allowed to work with them in earnest.
 
-The verdict was "accept".  The scout fell short by saying this was a straightforward fix, but that's mostly my own judgement.  It is a huge codebase.  The fix itself is rather simple, but it could be difficult to understand the larger context of what it does.
+The verdict was "accept".  The fix itself is a rather simple documentation addition.
 
 **Claim Link**
-`https://github.com/ESCOMP/CTSM/issues/2650#issuecomment-6780855685`
+`https://github.com/InsightSoftwareConsortium/ITK/issues/470#issuecomment-6828340620`
 
 **Toolkit**
 
@@ -104,25 +93,26 @@ The verdict was "accept".  The scout fell short by saying this was a straightfor
 - What it produced: 
 
 ```JSON
-{
-    "item": "https://github.com/ESCOMP/CTSM/issues/2650",
-    "checks": [
-      {"name": "Recent default-branch commits", "grade": "pass", "evidence": "last commit 2026-11-03"},
-      {"name": "Release recency", "grade": "pass", "evidence": "latest release 2025-12-12"},
-      {"name": "Archived flag", "grade": "pass", "evidence": "isArchived=false"},
-      {"name": "Assignee", "grade": "pass", "evidence": "assignees: []"},
-      {"name": "Linked PRs", "grade": "pass", "evidence": "no PR references in the timeline"},
-      {"name": "Claim comments", "grade": "pass", "evidence": "no claims; newest comment wwieder 2026-10-01 marks it 'eventually'"},
-      {"name": "Contribution policy", "grade": "pass", "evidence": "CONTRIBUTING.md has no AI restriction"},
-      {"name": "Dedicated AI policy files", "grade": "pass", "evidence": "no AI_POLICY.md or AGENTS.md"},
-      {"name": "Scope Feasible", "grade": "pass", "evidence": "samsrabin 2024-08-28: only tools/contrib/ and commented lilac lines affected; 'should be an easy fix'"}
-    ],
-    "verdict": "accept"
+  {
+  "item": "https://github.com/InsightSoftwareConsortium/ITK/issues/470",
+  "checks": [
+    {"name": "Recent default-branch commits", "grade": "pass", "evidence": "newest default-branch commit 2026-11-12 (hjmjohnson)"},
+    {"name": "Release recency", "grade": "pass", "evidence": "v5.4.7 published 2026-08-10"},
+    {"name": "Archived flag", "grade": "pass", "evidence": "archived:false"},
+    {"name": "Assignee", "grade": "pass", "evidence": "assignees: []; sjh26 unassigned 2021-08-18"},
+    {"name": "Linked PRs", "grade": "pass", "evidence": "no PRs reference the issue; PR search for ShapeLabelMapFilter perimeter returned only unrelated #6521"},
+    {"name": "Claim comments", "grade": "pass", "evidence": "3 comments, all Feb 2019; none are claims within 6 months"},
+    {"name": "Contribution policy", "grade": "pass", "evidence": "CONTRIBUTING.md has no AI restriction; Documentation/AI/ rules set disclosure conditions only"},
+    {"name": "Dedicated AI policy files", "grade": "pass", "evidence": "AGENTS.md and Documentation/AI/*.md are conditions (disclose in PR, no AI Co-Authored-By), not a ban"},
+    {"name": "Scope Feasible", "grade": "pass", "evidence": "one task: add link http://hdl.handle.net/10380/3342 to LabelObject perimeter docs; link absent from tree (code search: 0 results)"},
+    {"name": "Locally Runnable", "grade": "pass", "evidence": "comment-only change; no stated difficulty"}
+  ],
+  "verdict": "accept"
   }
 ```
 
-- Difficulties:  Difficulty was in finding an unclaimed issue on a repo that was actively maintained.
-- What changed: I just keep trying repos from the curated issues selected by CodePath, but changed nothing in the rubrics.
+- Difficulties:  Difficulty was in finding an unclaimed issue on a repo that was actively maintained and wasn't someone's side project.
+- What changed: I just keep trying repos from the curated issues selected by CodePath after adding the "Locally Runnable" check to the rubric to avoid an issue with another repo being something that required a supercomputer.
 
 ---
 
@@ -130,26 +120,27 @@ The verdict was "accept".  The scout fell short by saying this was a straightfor
 
 **Problem Description**
 
-The path to a username is hard coded to an older path.
+The class `ShapeLabelMapFilter` needed to also cite _Insight Journal publication 852, "Efficient 
+N-Dimensional surface estimation using Crofton formula and run-length encoding"_ alongside it's citation already present.
 
 **Expected Behavior**
 
-It needs updated to the current path to read and write the proper places.
+It needs updated to cite that paper.
 
 **Current Behavior**
 
-It tries to read and write to scientific files that no longer exist.
+It doesn't cite that paper.
 
 **Affected Components**
 
-Derecho reading and writing of data.
+The `ShapeLabelMapFilter` class in `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelMapFilter.h`.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: issue-scout and voice-guard
+- What it produced: Failure at first, then I found an issue that passed and altered the claim, commit, and PR messages till they passed the guard
+- Difficulties: Finding an acceptable issue
+- What changed: The `ShapeLabelMapFilter` docstring.
 
 ---
 

@@ -60,19 +60,25 @@ one in the week it belongs to.
 
 **Unit 5: Wrote the `gh` query and ranking filters in search-strategy.md then selected an issue with issue-scout**
 
-**11/3/2026**
+**11/12/2026**
 
 For the activity, I chose the query `gh search issues --language python --state open --no-assignee --label "good first issue" --created ">2026-11-01" --json title,repository,labels,createdAt,updatedAt,commentsCount,url --limit 100` because it uses the language I want, is likely unpicked and good for beginners' first issue, isn't assigned, and recent enough to hopefully be actively maintained.  I wrote other queries for Java, Go, and C++ too, but they're commented out in case I wanted to try another language.  My filters preferred 0 comments, work involving AI models, and only issues in English.  Nothing broke really, all the issues the scout returned were interesting, passed the rubric and filters, and are issues I could work on with Claude.
 
 **Unit 6: Drafted a claim comment and checked it with repro-check.**
 
+**11/12/2026**
+
 I added the required check to the voice-guard, did the symlinking.  I did the repo-memory file.  Otherwise, I copied everything that was already there into the new files.  The only things that broke anything were my claim comment formats, which I altered till it passed.
 
 **Unit 7: Added ship-gate and ran pr-precheck**
 
+**11/12/2026**
+
 The ship gate kept failing thread-check test, so I had to give the Python file the ability to look at PR comments to find where a guy had asked me to make a small change after submitting the PR.  I ended up having to install Pixi package manager and explicitly give the full path to it because the pre-commit check couldn't find it.  I originally didn't have an "exclude" table in the gate, so I added some to keep it from running if functional code never changes (only docstring changes in this one).
 
 **Unit 8: Ran the PR-monitor on PR #7159 with my playbook**
+
+**11/12/2026**
 
 My playbook enforces not "nudging" for at least 7 days of inactivity, responding courteously, and things like this.  PR-monitor found that the maintainers approved my PR with only a minor change requested.  It's only waiting on a couple last CI tests, and has already been marked as able to merge.
 

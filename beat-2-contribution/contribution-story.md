@@ -1,4 +1,4 @@
-# Contribution: [Issue Title]
+# Contribution: Document LabelObject perimeter computations #470
 
 Path: `beat-2-contribution/contribution-story.md`
 

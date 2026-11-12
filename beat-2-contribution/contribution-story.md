@@ -171,6 +171,7 @@ The `ShapeLabelMapFilter` class in `ITK/Modules/Filtering/LabelMap/include/itkSh
     - Ninja `>=1.13.0,<2`.
     - ccache `>=4.13.6,<5`.
     - pre-commit `>=4.1.0,<5`.
+    - C++ compiler `cxx-compiler >=1.10.0,<2`
 - **Setup:**
   - `pixi install`.
   - `pixi run --as-is build`.

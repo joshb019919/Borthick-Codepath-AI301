@@ -88,7 +88,7 @@ My playbook enforces not "nudging" for at least 7 days of inactivity, responding
 
 I first tried a wild repo that I'd found from a regular filtered search, but was told it wasn't a big enough project and didn't have enough hands in it to count.  I then went through about 50 curated issues with filters "python" and "good first issue" to find one that passed my issue-scout (most were already claimed, had PRs or assignees, or weren't maintained).  I settled on one that seemed easy enough (classification of **straightforward**) and didn't have any claims.  
 
-I was going to find a complex one to do, but realized that I was running out of time in this course.  This does fit my profile so well because it isn't challenging or involving Python, Rust, or the other things I wanted to work on.  This is a selection of convenience because I'm running out of time.  Actually though, I hope to learn how to run this ITK tool and some of the inner workings of its codebase, perhaps even ingratiate myself to the maintainers and owners and be allowed to work with them in earnest.
+I was going to find a complex one to do, but realized that I was running out of time in this course.  This doesn't fit my profile so well because it isn't challenging or involving Python, Rust, or the other things I wanted to work on.  This is a selection of convenience because I'm running out of time.  Actually though, I hope to learn how to run this ITK tool and some of the inner workings of its codebase, perhaps even ingratiate myself to the maintainers and owners and be allowed to work with them in earnest.
 
 The verdict was "accept".  The fix itself is a rather simple documentation addition.
 
@@ -216,7 +216,7 @@ Add the citations to the docstrings of `ShapeLabelObject` and `ShapeLabelMapFilt
 3. Run `pixi exec pre-commit run --files` on both headers and commit step 2 with a `DOC:` subject of 78 characters or fewer.
 4. Open a draft PR with the AI disclosure only in a `<details>` block, per `Documentation/AI/attribution.md`.
 
-**Derivation:** I originally mentioned changing both files, but only changed one.  I'll mention in PR `--force-with-lease` about it so maintainers can drop the update in `itkShapeLabelObject.h` if preferred.
+**Derivation:** None.
 
 **Toolkit**
 - **Tool:** Claude Code, reading the two headers and the `.hxx`, and drafting the comment text; I reviewed and edited it.
@@ -278,7 +278,9 @@ Added the same paragraph to `itkShapeLabelObject.h` and committed it as `f9d4f60
 
 ### Header
 
-DOC: Cite perimeter paper in ShapeLabelMapFilter documentation - #7159
+DOC: Cite perimeter paper in `ShapeLabelMapFilter` documentation - #7159
+
+*NOTE: This is the actual PR description, but both ShapeLabelMapFilter and ShapeLabelObject class header docstrings are altered.*
 
 ### Body
 
@@ -309,7 +311,7 @@ N-Dimensional surface estimation using Crofton formula and run-length encoding"
 - 11/12/2026 13:05: Thank you for this feedback. I'll switch this over and add author/title.
 - 11/12/2026 13:15: @dzenanz Changes are pushed with full names and direct link.
 
-**Status:** Waiting on CI tests to finish, otherwise already approved by 2 maintainers with write access.
+**Status:** CI tests completed and PR merged.
 
 **Toolkit**
 
@@ -326,6 +328,8 @@ N-Dimensional surface estimation using Crofton formula and run-length encoding"
 
 I learned that if I'm going to be using AI on a huge project, with many lines changed or added, it is very useful to have the skill fully fleshed out.  It's important to have gates in place to make sure issue claims, pull requests, and git pushes all follow given rules set down by maintainer-supplied requirements like AGENTS.md and CONTRIBUTING.md.  This all together allows me to focus on high-level concepts and decision making while I delegate actual tasks and low-level changes to Claude Code (or some other AI tool).
 
+About ITK: they care about proper citation, even proper naming conventions, using proper accepts for letters in author names.
+
 **Challenges Overcome**
 
 Finding an available and appropriate issue to work on was the most difficult.  The only real fix is to keep looking.
@@ -338,6 +342,6 @@ Not rely on CodePath's curated list of issues, and instead work directly with th
 
 ## Resources Used
 
-I already knew most of what I needed to get this done by this point in this course, and I relied on Claude Code for the rest.  This particular issue was not a bug or feature, and was instead just an addition to some class docstrings to cite the source of a solution.  I needed no external documentation to assist me in setting things up.
+I already knew most of what I needed to get this done by this point in this course, and I relied on Claude Code for the rest.  This particular issue was not a bug or feature, and was instead just an addition to some class docstrings to cite the source of a solution.  I needed no external documentation to assist me in setting things up.  However, I did need `CONTRIBUTING.md`, `AGENTS.md`, and `Documentation/AI/attribution.md` files to ensure Claude and I did everything right.
 
 - The original issue and dzenans's request for a change after I'd already pushed and made a pull request helped me to understand what needed to be done and how.  Source: https://github.com/InsightSoftwareConsortium/ITK/pull/7159.

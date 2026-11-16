@@ -1,4 +1,4 @@
-# Contribution: Document LabelObject perimeter computations #470
+# Contribution: Document LabelObject perimeter computations #470 (Issue Link: https://github.com/InsightSoftwareConsortium/ITK/issues/470; PR Link: https://github.com/InsightSoftwareConsortium/ITK/pull/7159)
 
 Path: `beat-2-contribution/contribution-story.md`
 
@@ -97,8 +97,7 @@ The verdict was "accept".  The fix itself is a rather simple documentation addit
 
 **Toolkit**
 
-- Tool: issue-scout (your scout: your search strategy, your rubric),
-  and how you used it
+- Tool: issue-scout
 - What it produced: 
 
 ```JSON
@@ -134,22 +133,22 @@ N-Dimensional surface estimation using Crofton formula and run-length encoding"_
 
 **Expected Behavior**
 
-It needs updated to cite that paper.
+`ShapeLabelMapFilter` in `Modules/Filtering/LabelMap/include/itkShapeLabelMapFilter.h` and `ShapeLabelObject` in `Modules/Filtering/LabelMap/include/itkShapeLabelObject.h` need updated to cite https://doi.org/10.54294/q6auw4, the Insight Journal paper.  It cites it with DOI or with /cite with an appropriate extra entry in .bib file.
 
 **Current Behavior**
 
-It doesn't cite that paper.
+Neither class header has that paper cited or mentioned in any way.
 
 **Affected Components**
 
-The `ShapeLabelMapFilter` class in `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelMapFilter.h`.
+The `ShapeLabelMapFilter` class header in `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelMapFilter.h` and `ShapeLabelObject` class header in `Modules/Filtering/LabelMap/include/itkShapeLabelObject.h`.  Their docstrings only, no functionality changes.
 
 **Toolkit**
 
-- Tool: issue-scout and voice-guard
-- What it produced: Failure at first, then I found an issue that passed and altered the claim, commit, and PR messages till they passed the guard
-- Difficulties: Finding an acceptable issue
-- What changed: The `ShapeLabelMapFilter` docstring.
+- Tool: issue-scout and voice-guard.
+- What it produced: Everything failed the voice guard, issue scout, or Tech Fellow suggestion, at first, then I found the current issue that passed and altered the claim, commit, and PR messages till they passed the guard.
+- Difficulties: Finding an acceptable issue took a long time.
+- What changed: Nothing, I just kept trying.
 
 ---
 
@@ -180,7 +179,7 @@ The `ShapeLabelMapFilter` class in `ITK/Modules/Filtering/LabelMap/include/itkSh
 **Steps to Reproduce**
 
 1. Fork InsightSoftwareConsortium/ITK.
-2. Clone to local machine.
+2. Clone fork to local machine.
 3. Observe that `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelMapFilter.h` and `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelObject.h` class headers have no citations for the paper, "Efficient N-Dimensional surface estimation using Crofton formula and run-length encoding".
 
 **Reproduction Evidence**
@@ -202,7 +201,9 @@ The `ShapeLabelMapFilter` class in `ITK/Modules/Filtering/LabelMap/include/itkSh
 
 **Analysis**
 
-The missing documentation comes from how the classes are split, which a maintainer (blowekamp) described on the issue: the data lives in the object, the filter computes it, and other filters reuse the filter, so it was never clear where to document it. Neither class's Doxygen comment cites the paper.
+The missing documentation comes from how the classes are split, which a maintainer (blowekamp) described on the issue: "the data lives in the object, the filter computes it, and other filters reuse the filter, so it was never clear where to document it."  Neither header's Doxygen comment cites the paper.
+
+The files and class headers are `ShapeLabelMapFilter` in `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelMapFilter.h` and `ShapeLabelObject` in `ITK/Modules/Filtering/LabelMap/include/itkShapeLabelObject.h`.
 
 **Proposed Solution**
 
@@ -211,14 +212,14 @@ Add the citations to the docstrings of `ShapeLabelObject` and `ShapeLabelMapFilt
 **Implementation Plan**
 
 1. `itkShapeLabelMapFilter.h`: add the paper paragraph above `\author`. Done in commit `2e3a1eb760` (`DOC: Cite perimeter paper in ShapeLabelMapFilter documentation`, `Addresses #470.`).
-2. `itkShapeLabelObject.h`: add the same paragraph to the class comment. Written but uncommitted in the working tree.
+2. `itkShapeLabelObject.h`: add the same paragraph to the class comment. Written and committed right after (`f9d4f6074e`).
 3. Run `pixi exec pre-commit run --files` on both headers and commit step 2 with a `DOC:` subject of 78 characters or fewer.
 4. Open a draft PR with the AI disclosure only in a `<details>` block, per `Documentation/AI/attribution.md`.
 
 **Derivation:** I originally mentioned changing both files, but only changed one.  I'll mention in PR `--force-with-lease` about it so maintainers can drop the update in `itkShapeLabelObject.h` if preferred.
 
 **Toolkit**
-- **Tool:** Claude Code, reading the three headers and the `.hxx`, and drafting the comment text; I reviewed and edited it.
+- **Tool:** Claude Code, reading the two headers and the `.hxx`, and drafting the comment text; I reviewed and edited it.
 - **What it produced:** the root-cause trace above and the two comment paragraphs.
 - **Difficulties:** the draft of the second paragraph left trailing whitespace, caught in the diff review.
 - **What changed:** the whitespace is to be fixed before the commit; nothing else.

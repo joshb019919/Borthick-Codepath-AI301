@@ -363,6 +363,9 @@ manager than a software engineer or data scientist.
 **Tool limits.** 
 
 issue-scout: `none`
+
 voice-guard: `none`
+
 pr-monitor: `none`
+
 ship-gate: `none`

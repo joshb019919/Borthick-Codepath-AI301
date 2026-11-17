@@ -276,6 +276,7 @@ really that tough.  The same can be said of `pr-precheck` and
 `ship-gate`.
 
 **Beat 1**
+
 Date: 9/22/2026--10/11/2026
 Friction: Took some time to get used to this new way of doing things.  
 Working with Claude instead of coding things myself or asking an AI 
@@ -306,6 +307,7 @@ interacting with GitHub repositories.  The actual grades were each
 quite good, though not perfect.
 
 **Beat 2**
+
 Date: 11/3/2026--11/17-2026
 Friction: The most challenging part up till writing `issue-scout` was 
 getting used to this new way of doing things with AI.  By this 
@@ -330,6 +332,7 @@ maintainers to read.  The actual repo I worked on thanked me for my
 commit and helped me be more confident in future real work.
 
 **Beat 3**
+
 Date: 11/17/2026
 Friction: This is a writing assignment, so the main difficulty is
 doing all this writing.  As a serious friction, I'm really not sure

@@ -360,10 +360,7 @@ say yay or nay to make it actually happen.  It would thoroughly
 speed up my overall process, though it puts me more as an AI agent
 manager than a software engineer or data scientist.
 
-**Tool limits.** One line per featured tool, in the same order as the entries above, naming
-where that tool still stops or what it still gets wrong. A small honest limit is full credit;
-"none really" is not a limit. If a tool genuinely has none you can name, write `none` after
-its label rather than deleting the line.
+**Tool limits.** 
 
 issue-scout: `none`
 voice-guard: `none`

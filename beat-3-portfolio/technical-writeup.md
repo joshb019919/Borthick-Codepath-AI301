@@ -948,6 +948,15 @@ My original goal was loftier, but being short on time I selected this comment ch
 
 Claude originally included the scholarly paper citation as a "handle" link, but maintainer `dzenanz` asked for a direct link.  The plan I made failed several times because the tool as presented by CodePath (tech fellow-written Python script) could only see issue and claim comments.  It had to be extended to be able to also view pull request comments.  The plan was then accepted.
 
+dzenanz
+We might also want to put author/title, in addition to link. Also, I think we switched to using direct links instead of handles, e.g. https://insight-journal.org/browse/publication/852/
+
+Josh Borthick
+Thank you for this feedback. I'll switch this over and add author/title.
+
+Josh Borthick
+@dzenanz Changes are pushed with full names and direct link.
+
 ### The review comment the pipeline had to handle
 
 After I opened the PR, dzenanz wrote:

@@ -28,41 +28,11 @@ just numbers them.
 
 ## Toolkit
 
-Every story section below, from Why I Chose This Issue through Pull
-Request, ends with a Toolkit block: which tool did that phase's work
-and how you used it, what it produced, what difficulties or
-shortcomings it presented, and what you changed or would change
-because of them. Together the blocks are the thread the rubric's
-Toolkit points read, and they are the raw material for your unit-9
-portfolio, so keep them current as you work rather than
-reconstructing them later.
-
-A Toolkit block looks like this (copy it into each story section and
-fill it there):
-
-```text
-**Toolkit**
-
-- Tool: [which tool did this phase's work, and how you used it]
-- What it produced: [described in a sentence or a short excerpt]
-- Difficulties: [what fought you or fell short, or "none met"]
-- What changed: [the patch, revision, or workaround, what you would
-  update, or "nothing"]
-```
-
-This section also keeps one short dated entry per week of tool work,
-starting below: what you built or changed that week, what broke, and
-what you changed because of it. The blocks tell the story where it
-happened; these entries are the toolkit's own timeline.
-
-All four entries are graded. Keep every heading below, and fill each
-one in the week it belongs to.
-
 **Unit 5: Wrote the `gh` query and ranking filters in search-strategy.md then selected an issue with issue-scout**
 
 **11/12/2026**
 
-For the activity, I chose the query `gh search issues --language python --state open --no-assignee --label "good first issue" --created ">2026-11-01" --json title,repository,labels,createdAt,updatedAt,commentsCount,url --limit 100` because it uses the language I want, is likely unpicked and good for beginners' first issue, isn't assigned, and recent enough to hopefully be actively maintained.  I wrote other queries for Java, Go, and C++ too, but they're commented out in case I wanted to try another language.  My filters preferred 0 comments, work involving AI models, and only issues in English.  Nothing broke really, all the issues the scout returned were interesting, passed the rubric and filters, and are issues I could work on with Claude.
+For the activity, I chose the query `gh search issues --language python --state open --no-assignee --label "good first issue" --created ">2026-11-01" --json title,repository,labels,createdAt,updatedAt,commentsCount,url --limit 100` because it uses the language I want, is likely unpicked and good for beginners' first issue, isn't assigned, and recent enough to hopefully be actively maintained.  I wrote other queries for Java, Go, and C++ too, but they're commented out in case I wanted to try another language.  My filters preferred 0 comments, work involving AI models, and only issues in English.  The query returned many candidates, and most failed the scout or my filters (already claimed, had PRs or assignees, or unmaintained); the few that passed were interesting and issues I could work on with Claude.
 
 **Unit 6: Drafted a claim comment and checked it with repro-check.**
 
@@ -80,7 +50,7 @@ The ship gate kept failing thread-check test, so I had to give the Python file t
 
 **11/12/2026**
 
-My playbook enforces not "nudging" for at least 7 days of inactivity, responding courteously, and things like this.  PR-monitor found that the maintainers approved my PR with only a minor change requested.  It's only waiting on a couple last CI tests, and has already been marked as able to merge.
+My playbook enforces not "nudging" for at least 7 days of inactivity, responding courteously, and things like this.  PR-monitor found that the maintainers approved my PR with only a minor change requested.  As of that run it was only waiting on a couple last CI tests and was marked able to merge; it has since merged.
 
 ---
 
@@ -174,7 +144,7 @@ The `ShapeLabelMapFilter` class header in `ITK/Modules/Filtering/LabelMap/includ
 - **Setup:**
   - `pixi install`.
   - `pixi run --as-is build`.
-- **Challenges:** I have not built or run ITK's tests because this is a comment-only change.  Nothing in this change needs a build.
+- **Challenges:** The build required all my memory and failed once.  I had to rerun with special memory-limiting strategies, including but not limited to only using one thread.  After the PR was opened, I built ITK with Pixi and ran `ctest -j6` at the commit before the change and again with it. 4929 of 4929 tests passed, with 1 skipped. See `pixi-tests.md`.
 
 **Steps to Reproduce**
 
@@ -213,8 +183,8 @@ Add the citations to the docstrings of `ShapeLabelObject` and `ShapeLabelMapFilt
 
 1. `itkShapeLabelMapFilter.h`: add the paper paragraph above `\author`. Done in commit `2e3a1eb760` (`DOC: Cite perimeter paper in ShapeLabelMapFilter documentation`, `Addresses #470.`).
 2. `itkShapeLabelObject.h`: add the same paragraph to the class comment. Written and committed right after (`f9d4f6074e`).
-3. Run `pixi exec pre-commit run --files` on both headers and commit step 2 with a `DOC:` subject of 78 characters or fewer.
-4. Open a draft PR with the AI disclosure only in a `<details>` block, per `Documentation/AI/attribution.md`.
+3. Done: ran `pixi exec pre-commit run --files` on both headers and committed step 2 with a `DOC:` subject of 78 characters or fewer.
+4. Done: opened PR #7159 with the AI disclosure only in a `<details>` block, per `Documentation/AI/attribution.md`.
 
 **Derivation:** None.
 
@@ -222,7 +192,7 @@ Add the citations to the docstrings of `ShapeLabelObject` and `ShapeLabelMapFilt
 - **Tool:** Claude Code, reading the two headers and the `.hxx`, and drafting the comment text; I reviewed and edited it.
 - **What it produced:** the root-cause trace above and the two comment paragraphs.
 - **Difficulties:** the draft of the second paragraph left trailing whitespace, caught in the diff review.
-- **What changed:** the whitespace is to be fixed before the commit; nothing else.
+- **What changed:** I removed the trailing whitespace before the commit; nothing else.
 
 ---
 
@@ -231,14 +201,15 @@ Add the citations to the docstrings of `ShapeLabelObject` and `ShapeLabelMapFilt
 This is a comment-only change.  The checks show that the text landed and that the repo's own checks accept it.
 
 - **Before and after:** `grep -c "publication/852"` on `itkShapeLabelMapFilter.h` at `upstream/main` gives 0. On my branch, `grep -n "insight-journal.org/browse/publication/852" Modules/Filtering/LabelMap/include/itkShapeLabel*.h` gives `itkShapeLabelMapFilter.h:46` and `itkShapeLabelObject.h:38`; the PR's two commits (`2e3a1eb760`, `f9d4f6074e`) touch exactly those two files, 5 insertions each.
-- **Repo checks on PR #7159:** `pre-commit`, `doxygen-warnings`, `ghostflow-check-main`, `CDash`, `Greptile Review`, `Pixi-Cxx (ubuntu-22.04)`, `Pixi-Cxx (macos-15)`, `ARMBUILD-Ubuntu-24.04-arm` and `ITK.macOS.Python` pass. `ARMBUILD-Python` and `Pixi-Cxx (windows-2022)` were still pending when I looked.
-- **Not run locally:** my manifest's build and `ctest -R ShapeLabel` commands. The pre-commit command passed in the ship-gate; the build and `ctest` rows are excluded because this clone's sparse checkout omits `CMake/`, so CI is the evidence for them.
+- **Repo checks on PR #7159:** `pre-commit`, `doxygen-warnings`, `ghostflow-check-main`, `CDash`, `Greptile Review`, `Pixi-Cxx (ubuntu-22.04)`, `Pixi-Cxx (macos-15)`, `ARMBUILD-Ubuntu-24.04-arm` and `ITK.macOS.Python` passed. `ARMBUILD-Python` and `Pixi-Cxx (windows-2022)` were still pending when I looked on 11/12; all had completed by the merge (see Status).
+- **Local ctest:** run after the PR was opened, `ctest -j6` passed 4929 of 4929 with 1 skipped, both before and after the change.
+- **Test Results:** The results, contained in `test-after.md` and `test-before.md`, show all tests passed both before and after the changes to the docstrings.  The test results are in separate files because they are each 10,000 lines long.
 
 **Toolkit**
 
 - **Tool:** `grep` and `git` for before/after, and looking in the browser for the CI results.
 - **What it produced:** the 0-hit and 1-hit greps above, and the list of passing and pending checks.
-- **Difficulties:** `pixi` reports all checks either skipped or passed.  CI is still pending, though nothing has failed, yet.
+- **Difficulties:** `pixi` reports all checks either skipped or passed.  As of 11/12 CI was still pending with nothing failed; it finished green before the merge.
 - **What changed:** I recorded the pending checks instead of calling the PR green.
 
 ---
@@ -292,7 +263,7 @@ Link the Insight Journal perimeter paper from the ShapeLabelMapFilter class docu
 Tool: Claude Code (claude-sonnet-5-5)
 Role: located the doc comment, confirmed the link was absent from the tree, drafted the one-line comment
 Comment-only change; no local build or tests were run, relying on CI
-All changes were reviewed by the contributor before committing
+All changes were reviewed by the contributor before committing.
 
 </details>
 
@@ -304,6 +275,9 @@ N-Dimensional surface estimation using Crofton formula and run-length encoding"
 
 </details>
 
+<br>
+
+*As of submitting and having this accepted and merged into their repo, I had not run the tests.  They have since been run locally (before and after the change) and all passed; see `pixi-tests.md`.*
 
 **Maintainer Feedback:**
 

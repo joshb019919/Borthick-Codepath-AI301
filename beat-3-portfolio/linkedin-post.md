@@ -1,6 +1,6 @@
-My work with CodePath has involved creating tools to guide my contributions to open source GitHub projects. I tested the whole process on a real contribution to ITK, a toolkit for analyzing medical images, and the maintainers merged my pull request on November 14.
+My work with CodePath, a tech education nonprofit, has involved creating tools to guide my contributions to open source GitHub projects. I tested the whole process on a real contribution to ITK, a toolkit for analyzing medical images, and the maintainers merged my pull request on November 14.
 
-My original goal was loftier, but being short on time I chose a small documentation fix, both to prove to myself that what I'd built would work and to demonstrate what an AI-assisted workflow could accomplish.
+My original goal was loftier, but being short on time I chose a small documentation fix, adding a citation to a research paper in two ITK components, both to prove to myself that what I'd built would work and to demonstrate what an AI-assisted workflow could accomplish.
 
 The process did not make the work much faster. What it did was catch real mistakes before a maintainer saw them, and each failure sent me back to improve a tool:
 
